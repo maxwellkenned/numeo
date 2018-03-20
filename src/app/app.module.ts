@@ -17,15 +17,13 @@ import { ClienteService } from './componentes/cliente/cliente.service';
 import { ServicoService } from './componentes/servico/servico.service';
 import { ColaboradorService } from './componentes/colaborador/colaborador.service';
 import { VendasComponent } from './componentes/vendas/vendas.component';
-import { CarrinhoComponent } from './componentes/vendas/carrinho/carrinho.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    VendasComponent,
-    CarrinhoComponent
+    VendasComponent
   ],
   imports: [
     BrowserModule,
