@@ -1,0 +1,65 @@
+<!--INICIO DO CONTEUDO-->
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h3 class="modal-title">Cadastro de Serviços</h3>
+</div>
+<div class="model-body">
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box box-solid">
+          <div class="box-body">
+            <form [formGroup]="servicoForm">
+              <div class="box-group" id="accordion">
+                <nm-accodion-box label="Informações obrigatórias" idBox="c1" expanded="true">
+                  <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                          <mt-input-container errorMessage="Campo obrigatório" label="Nome do serviço" forId="ds_servico">
+                            <input type="text" class="form-control" id="ds_servico" formControlName="ds_servico" placeholder="Informe o nome do serviço"  autocomplete="off">
+                          </mt-input-container>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                          <mt-input-container errorMessage="Campo obrigatório" label="Valor do serviço" forId="vl_servico">
+                            <input type="number" class="form-control" id="vl_servico" formControlName="vl_servico" placeholder="Informe o valor do serviço"  autocomplete="off">
+                          </mt-input-container>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                          <mt-input-container errorMessage="Campo obrigatório" label="Empresa" forId="id_empresa">
+                            <select class="form-control" formControlName="id_empresa" id="id_empresa">
+                              <option *ngIf="empresas.length < 1" value selected disabled hidden>Nenhuma empresa cadastrada</option>
+                              <option *ngIf="empresas.length > 0" value selected hidden>Informe a empresa</option>
+                              <option *ngFor="let empresa of empresas" value="{{empresa.id_empresa}}">{{empresa.nome_fantasia}}</option>
+                            </select>
+                          </mt-input-container>
+                        </div>
+                    </div>
+                </nm-accodion-box>
+                <nm-accodion-box label="Informações fiscias" idBox="c2">
+                  <div class="row">
+                  </div>
+                </nm-accodion-box>
+              </div>
+            </form>
+            <div class="box-footer">
+              <div class="row justify-content-end">
+                <div class="col-xs-12 col-md-2 col-md-offset-8">
+                  <button  (click)="editar(servicoForm.value)" class="btn btn-default btn-block">
+                    <i class="fa fa-edit"></i> Editar
+                  </button>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                  <button  (click)="salvar(servicoForm.value)" class="btn btn-success btn-block"
+                    [disabled]="!servicoForm.valid">
+                    <i class="fa fa-edit"></i> Salvar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

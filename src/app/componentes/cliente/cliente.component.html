@@ -1,0 +1,125 @@
+<!--INICIO DO CONTEUDO-->
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h3 class="modal-title">Cadastro de Clientes</h3>
+</div>
+<div class="model-body">
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box box-solid">
+          <div class="box-body">
+            <form [formGroup]="clienteForm">
+              <div class="box-group" id="accordion">
+                <nm-accodion-box label="Informações do colaborador" idBox="c1" expanded="true">
+                  <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                          <mt-input-container errorMessage="Campo obrigatório" label="Nome" forId="nome_pessoa">
+                            <input type="text" class="form-control" id="nome_pessoa" formControlName="nome_pessoa" placeholder="Informe o nome"  autocomplete="off" autofocus="true">
+                          </mt-input-container>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                          <mt-input-container errorMessage="Campo obrigatório" label="E-Mail" forId="email">
+                            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Informe o E-mail"  autocomplete="off">
+                          </mt-input-container>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                          <mt-input-container errorMessage="Campo obrigatório" label="RG" forId="rg">
+                            <input type="text" class="form-control" id="rg" formControlName="rg" placeholder="Informe o RG"  autocomplete="off">
+                          </mt-input-container>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                          <mt-input-container errorMessage="Senhas não conferem" label="CPF" forId="cpf">
+                            <input type="text" class="form-control" id="cpf" formControlName="cpf" (blur)="getValueCPF()" placeholder="Informe o CPF"  autocomplete="off">
+                          </mt-input-container>
+                        </div>
+                    </div>
+                </nm-accodion-box>
+                <nm-accodion-box label="Informações de contato" idBox="c2">
+                  <div class="row">
+                    <div class="col-sm-2 col-xs-12">
+                      <mt-input-container errorMessage="Campo obrigatório" label="Telefone" forId="telefone">
+                        <input type="text" class="form-control" id="telefone" formControlName="telefone" placeholder="Informe o telefone"  autocomplete="off">
+                      </mt-input-container>
+                    </div>
+                    <div class="col-sm-2 col-xs-12">
+                      <mt-input-container errorMessage="Campo obrigatório" label="Celular" forId="celular">
+                        <input type="text" class="form-control" id="celular" formControlName="celular" placeholder="Informe o celular"  autocomplete="off">
+                      </mt-input-container>
+                    </div>
+                    <div class="col-sm-5 col-xs-12">
+                      <mt-input-container errorMessage="Campo obrigatório" label="Pessoa de contato" forId="pessoa_contato">
+                        <input type="text" class="form-control" id="pessoa_contato" formControlName="pessoa_contato" placeholder="Informe uma pessoa de contato"  autocomplete="off">
+                      </mt-input-container>
+                    </div>
+                  </div>
+                </nm-accodion-box>
+                <nm-accodion-box label="Informações de endereço" idBox="c3">
+                  <div class="row">
+                <div class="col-sm-2 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="CEP" forId="cep">
+                    <input type="text" class="form-control" id="cep" formControlName="cep" placeholder="Informe o cep"  autocomplete="off" (blur)="setValueCep()">
+                  </mt-input-container>
+                </div>
+                <div class="col-sm-5 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="Endereço" forId="endereco">
+                    <input type="text" class="form-control" id="endereco" formControlName="endereco" placeholder="Informe o endereço"  autocomplete="off">
+                  </mt-input-container>
+                </div>
+                <div class="col-sm-2 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="Número" forId="endereco_numero">
+                    <input type="text" class="form-control" id="endereco_numero" formControlName="endereco_numero" placeholder="000"  autocomplete="off">
+                  </mt-input-container>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="Complemento" forId="complemento">
+                    <input type="text" class="form-control" id="complemento" formControlName="complemento" placeholder=""  autocomplete="off">
+                  </mt-input-container>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="Bairro" forId="bairro">
+                    <input type="text" class="form-control" id="bairro" formControlName="bairro" placeholder="Bairro"  autocomplete="off">
+                  </mt-input-container>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="Cidade" forId="cidade">
+                    <input type="text" class="form-control" id="cidade" formControlName="cidade" placeholder="Cidade"  autocomplete="off">
+                  </mt-input-container>
+                </div>
+                <div class="col-sm-2 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="Estado" forId="estado">
+                    <input type="text" class="form-control" id="estado" formControlName="estado" placeholder="Estado"  autocomplete="off">
+                  </mt-input-container>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="País" forId="pais">
+                    <input type="text" class="form-control" id="pais" formControlName="pais" placeholder="País"  autocomplete="off">
+                  </mt-input-container>
+                </div>
+              </div>
+                </nm-accodion-box>
+              </div>
+            </form>
+            <div class="box-footer">
+              <div class="row justify-content-end">
+                <div class="col-xs-12 col-md-2 col-md-offset-8">
+                  <button  (click)="editar(colaboradorForm.value)" class="btn btn-default btn-block">
+                    <i class="fa fa-edit"></i> Editar
+                  </button>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                  <button  (click)="salvar(clienteForm.value)" class="btn btn-success btn-block"
+                    [disabled]="!clienteForm.valid">
+                    <i class="fa fa-edit"></i> Salvar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

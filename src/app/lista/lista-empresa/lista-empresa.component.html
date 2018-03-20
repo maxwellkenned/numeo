@@ -1,0 +1,49 @@
+<section class="content-header">
+  <h1>Listagem de Empresas</h1>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box box-solid">
+      <div class="box-body table-responsive no-padding">
+        <div class="" style="padding: 5px;">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal">
+            <i class="fa fa-plus"></i> Adicionar
+          </button>
+        </div>
+        <table id="table" class="table table-hover table-condensed table-bordered" role="grid">
+          <thead>
+              <tr role="row">
+                  <th>#</th>
+                  <th>CNPJ</th>
+                  <th>Nome Fantasia</th>
+                  <th>Razao Social</th>
+                  <th>Responsavel</th>
+                  <th>ação</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let e of empresas">
+                  <td>{{e.id_empresa}}</td>
+                  <td>{{e.cnpj | cnpjMask}}</td>
+                  <td>{{e.nome_fantasia}}</td>
+                  <td>{{e.razao_social}}</td>
+                  <td>{{e.nome_pessoa}}</td>
+                  <td>Detalhe</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade in" id="modal" tabindex="-1" role="dialog" aria-labelledby="Cadastro de Colaboradores">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <nm-empresa></nm-empresa>
+    </div>
+  </div>
+</div>

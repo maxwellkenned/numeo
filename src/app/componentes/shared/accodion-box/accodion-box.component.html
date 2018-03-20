@@ -1,0 +1,16 @@
+<div class="panel box box-default">
+  <div class="box-header with-border">
+    <h4 class="box-title">
+      <a href="#{{idBox}}" data-toggle="collapse" data-parent="#accordion" >
+        {{label}}
+      </a>
+    </h4>
+  </div>
+  <div class="panel-collapse collapse" [class.in]="expanded" id="{{idBox}}">
+    <div class="box-body">
+
+      <ng-content></ng-content>
+
+    </div>
+  </div>
+</div>

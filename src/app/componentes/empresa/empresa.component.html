@@ -1,0 +1,62 @@
+<!--INICIO DO CONTEUDO-->
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h3 class="modal-title">Cadastro de Empresa</h3>
+</div>
+
+<div class="model-body">
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box box-solid">
+          <div class="box-body">
+            <form [formGroup]="empresaForm">
+              <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="Responsável" forId="id_pessoa">
+                    <select class="form-control" formControlName="id_pessoa" id="id_pessoa" autocomplete="off">
+                      <option value selected disabled hidden>Informe o responsável pela empresa</option>
+                      <option *ngFor="let p of pessoas" value="{{p.id_pessoa}}">{{p.nome_pessoa}}</option>
+                    </select>
+                  </mt-input-container>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="CNPJ" forId="cnpj">
+                    <input type="text" class="form-control" id="cnpj" (blur)="getValueCNPJ()" formControlName="cnpj" placeholder="Informe o CNPJ da empresa"  autocomplete="off">
+                  </mt-input-container>
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="Nome Fantasia" forId="nome_fantasia">
+                    <input type="text" class="form-control" id="nome_fantasia" formControlName="nome_fantasia" placeholder="Informe o nome fantasia da empresa"  autocomplete="off">
+                  </mt-input-container>
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="Razão Social" forId="razao_social">
+                    <input type="text" class="form-control" id="razao_social" formControlName="razao_social" placeholder="Informe a razão social da empresa"  autocomplete="off">
+                  </mt-input-container>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="Email" forId="email_empresa">
+                    <input type="text" class="form-control" id="email_empresa" formControlName="email_empresa" placeholder="Informe o email da empresa"  autocomplete="off">
+                  </mt-input-container>
+                </div>
+              </div>
+            </form>
+            <div class="row">
+              <div class="col-xs-12">
+                <button  (click)="salvar(empresaForm.value)" class="btn btn-success pull-right"
+                  [disabled]="!empresaForm.valid">
+                  <i class="fa fa-edit"></i> Cadastrar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

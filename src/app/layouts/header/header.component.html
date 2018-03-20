@@ -1,0 +1,110 @@
+<header class="main-header">
+  <a [routerLink]="['/']" class="logo">
+    <span class="logo-mini">NUM</span>
+    <span class="logo-lg">NUMEO</span>
+  </a>
+
+  <nav class="navbar navbar-static-top">
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+    <!-- Navbar Menu da Direita -->
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <!-- Contas de Usuario -->
+        <li class="dropdown user user-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="assets/img/user2-160x160.jpg" class="user-image" alt="User Image">
+            <span class="hidden-xs">Maxwell Kenned</span>
+          </a>
+          <ul class="dropdown-menu">
+            <!-- Imagem do usuario -->
+            <li class="user-header">
+              <img src="assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+              <p>Maxwell Kenned - Web Developer <small>Cadastrado desde Fev. 2018</small></p>
+            </li>
+            <!-- menu do corpo -->
+            <li class="user-body"></li>
+            <!-- menu do rodape -->
+            <li class="user-footer">
+              <div class="pull-left">
+                <a href="#" class="btn btn-default btn-flat">Perfil</a>
+              </div>
+              <div class="pull-right">
+                <a href="#" class="btn btn-default btn-flat">Sair</a>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <!-- Botão de ferramentas no sidebar direito -->
+        <li>
+          <a href="#" data-toggle="control-sidebar">
+            <i class="fa fa-gears"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<!-- Sidebar da esquerda menu principal -->
+<aside class="main-sidebar">
+  <section class="sidebar">
+    <!-- Painel do usuario -->
+    <div class="user-panel">
+      <div class="pull-left image">
+        <img src="assets/img/user2-160x160.jpg" class="image-circle" alt="User Image">
+      </div>
+      <div class="pull-left info">
+        <p>Maxwell Kenned</p>
+        <a href="#">Link de alguma informação</a>
+      </div>
+    </div>
+
+    <!-- Formulario de pesquisa -->
+    <form class="sidebar-form" action="#" method="get">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Pesquisar...">
+        <span class="input-group-btn">
+          <button type="submit" name="pesquisa" class="btn btn-flat"><i class="fa fa-search"></i></button>
+        </span>
+      </div>
+    </form>
+
+    <!-- Sidebar MENU -->
+    <ul class="sidebar-menu tree" data-widget="tree">
+      <li class="header">MENU PRINCIPAL</li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-edit"></i>
+          <span>Cadastros</span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a [routerLink]="['lista/empresa']">
+              <i class="fa fa-user-o"></i>
+              <span>Empresa</span>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['lista/colaborador']">
+              <i class="fa fa-user-o"></i>
+              <span>Colaborador</span>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['lista/servico']">
+              <i class="fa fa-user-o"></i>
+              <span>Serviço</span>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['lista/cliente']">
+              <i class="fa fa-user-o"></i>
+              <span>Cliente</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</aside>

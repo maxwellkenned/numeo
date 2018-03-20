@@ -1,0 +1,88 @@
+<!--INICIO DO CONTEUDO-->
+<section class="content">
+  <div class="box box-solid">
+    <div class="box-body">
+      <form [formGroup]="vendasForm">
+        <div class="row">
+          <div class="col-xs-12">
+            <h2 class="page-header">Realizar nova venda</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 col-xs-12">
+            <mt-input-container errorMessage="Campo obrigatório" label="Cliente" forId="id_cliente">
+              <select class="form-control" formControlName="id_cliente" id="id_cliente" autocomplete="off">
+                <option value selected disabled hidden>Informe o responsável pela empresa</option>
+                <option *ngFor="let c of clientes" value="{{c.id_pessoa}}">{{c.nome_pessoa}}</option>
+              </select>
+            </mt-input-container>
+          </div>
+          <div class="col-sm-4 col-xs-12">
+            <mt-input-container errorMessage="Campo obrigatório" label="Vendedor" forId="id_vendedor">
+              <select class="form-control" formControlName="id_vendedor" id="id_vendedor" autocomplete="off">
+                <option value selected disabled hidden>Informe o responsável pela empresa</option>
+                <option *ngFor="let v of vendedores" value="{{v.id_colaborador}}">{{v.nome_pessoa}}</option>
+              </select>
+            </mt-input-container>
+          </div>
+          <div class="col-sm-4 col-xs-12">
+            <mt-input-container errorMessage="Campo obrigatório" label="Empresa" forId="id_empresa">
+              <select class="form-control" formControlName="id_empresa" id="id_empresa" autocomplete="off">
+                <option value selected disabled hidden>Informe o responsável pela empresa</option>
+                <option *ngFor="let e of empresas" value="{{e.id_empresa}}">{{e.nome_fantasia}}</option>
+              </select>
+            </mt-input-container>
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <mt-input-container errorMessage="Campo obrigatório" label="Serviços" forId="id_servico">
+              <select class="form-control" formControlName="id_servico" id="id_servico" autocomplete="off">
+                <option value selected disabled hidden>Informe o responsável pela empresa</option>
+                <option *ngFor="let s of servicos" value="{{s.id_servico}}">{{s.ds_servico}} | {{ s.vl_servico | currency:'BRL':'true'}}</option>
+              </select>
+            </mt-input-container>
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <div class="box box-solid">
+              <div class="box-header">
+                <i class="fa fa-shopping-cart"></i>
+
+                <h3 class="box-title">Carrinho</h3>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+
+                <div *ngIf="!items().length">
+                  <p class="text-center">
+                    Seu carrinho está vazio!
+                  </p>
+                </div>
+                <div class="table-responsive" *ngIf="items().length">
+                    <table class="table">
+                      <tbody>
+                      <tr *ngFor="let item of items()">
+                        <th>({{item.quantidade}}x) {{item.ds_servico}}</th>
+                        <td class="text-right">{{item.value() | currency: 'BRL': 'true'}}</td>
+                        <td class="text-right">
+                          <a (click)="removeItem(item)" class="btn btn-sm danger"><i class="fa fa-remove"></i></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Total:</th>
+                        <td class="text-right">{{total() | currency: 'BRL': 'true'}}</td>
+                      </tr>
+                    </tbody></table>
+                  </div>
+              </div>
+              <div class="box-footer" *ngIf="items().length">
+                <div class="pull-right">
+                  <button (click)="clear()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Limpar</button>
+                  <a (click)="salvar()"  class="btn btn-success"><i class="fa fa-credit-card"></i> Fechar Pedido</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

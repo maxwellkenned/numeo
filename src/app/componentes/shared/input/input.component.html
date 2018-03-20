@@ -1,0 +1,10 @@
+<div class="form-group"
+[class.has-success]="hasSuccess()"
+[class.has-error]="hasError()">
+  <label class="control-label" for="{{forId}}">{{label}}</label>
+  <!-- <label class="help pull-right" *ngIf="hasSuccess()"><i class="fa fa-check"></i> Ok</label> -->
+  <label class="help pull-right" *ngIf="hasError()"><i class="fa fa-remove"></i> {{errorMessage}}</label>
+  <!-- aqui entrará o conteudo inserido -->
+  <ng-content></ng-content>
+  <!-- <input type="text" class="form-control" name="adress" placeholder="Endereço" #input="ngModel" ngModel required minlength="5" autocomplete="off"> -->
+</div>
