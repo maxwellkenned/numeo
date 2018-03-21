@@ -6,7 +6,7 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, '/dist')));
 
 app.all(/.*/, (res, req, next) =>{
   var host = req.header("host");
