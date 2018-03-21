@@ -8,8 +8,13 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('*', (res, req) =>{
-  res.sendFiles(path.join(__dirname, 'dist/index.html'));
+app.all(/.*/, (res, req, next) =>{
+  var host = req.header("host");
+  if (host.match(/^www\..*/i)) {
+    next();
+  } else {
+    res.sendFiles(path.join(__dirname, 'dist/index.html'));
+  }
 });
 
 const port = process.env.PORT || '3001';
