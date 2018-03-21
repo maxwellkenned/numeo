@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 declare var $;
 import { EmpresaService } from '../empresa/empresa.service';
@@ -11,7 +11,7 @@ import { Carrinho } from './carrinho/carrinho.model';
   selector: 'nm-vendas',
   templateUrl: './vendas.component.html'
 })
-export class VendasComponent implements OnInit, OnChanges, AfterViewInit {
+export class VendasComponent implements OnInit, AfterViewInit {
 
   clientes: string[];
   empresas: string[];
@@ -24,14 +24,12 @@ export class VendasComponent implements OnInit, OnChanges, AfterViewInit {
               private empresaService: EmpresaService,
               private colaboradorService: ColaboradorService,
               private servicoService: ServicoService,
-              private clienteService: ClienteService) { }
-
-  ngOnChanges(){
-    this.clienteService.clientes().subscribe(response => this.clientes = response);
-    this.empresaService.empresas().subscribe(response => this.empresas = response);
-    this.colaboradorService.colaboradores().subscribe(response => this.vendedores = response);
-    this.servicoService.servicos().subscribe(response => this.servicos = response);
-  }
+              private clienteService: ClienteService) {
+                this.clienteService.clientes().subscribe(response => this.clientes = response);
+                this.empresaService.empresas().subscribe(response => this.empresas = response);
+                this.colaboradorService.colaboradores().subscribe(response => this.vendedores = response);
+                this.servicoService.servicos().subscribe(response => this.servicos = response);
+               }
   ngOnInit() {
     this.vendasForm = this.formBuilder.group({
       id_vendedor: this.formBuilder.control(''),
