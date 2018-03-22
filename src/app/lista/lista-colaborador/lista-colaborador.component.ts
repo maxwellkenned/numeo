@@ -11,10 +11,12 @@ export class ListaColaboradorComponent implements OnInit {
 
   colaboradores: string[]
 
-  constructor(private colaboradorService: ColaboradorService) { }
+  constructor(private colaboradorService: ColaboradorService) {
+    this.colaboradorService.colaboradores().subscribe(response => this.colaboradores = response);
+   }
 
   ngOnInit() {
-    this.colaboradorService.colaboradores().subscribe(response => this.colaboradores = response);
+
   }
 
   ngAfterViewInit(){

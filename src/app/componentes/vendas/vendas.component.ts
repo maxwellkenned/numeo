@@ -79,4 +79,17 @@ export class VendasComponent implements OnInit, AfterViewInit {
     item.quantidade = item.quantidade + 1;
   }
 
+  salvar(venda){
+    console.log("venda", venda);
+    console.log("itens", this.itens);
+  }
+
+  clear(){
+    this.itens = []
+  }
+
+  removeItem(item: Carrinho){
+    this.itens.splice(this.itens.indexOf(item), 1);
+  }
+
 }

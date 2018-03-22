@@ -26,10 +26,11 @@ export class EmpresaComponent implements OnInit, AfterViewInit {
               private formBuilder: FormBuilder,
               private empresaService: EmpresaService,
               private pessoaService: PessoaService,
-              private notification: NotificationService) { }
+              private notification: NotificationService) {
+                this.pessoaService.pessoas().subscribe(response => this.pessoas = response);
+               }
 
   ngOnInit() {
-    this.pessoaService.pessoas().subscribe(response => this.pessoas = response);
     this.empresaForm = this.formBuilder.group({
       id_pessoa: this.formBuilder.control('', [Validators.required]),
       cnpj: this.formBuilder.control('', Validators.minLength(14)),

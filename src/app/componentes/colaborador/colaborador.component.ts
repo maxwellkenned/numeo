@@ -24,10 +24,11 @@ export class ColaboradorComponent implements OnInit {
               private router: Router,
               private colaboradorService: ColaboradorService,
               private empresaService: EmpresaService,
-              private notification: NotificationService) { }
+              private notification: NotificationService){
+                this.empresaService.empresas().subscribe(response => this.empresas = response);
+              }
 
   ngOnInit() {
-    this.empresaService.empresas().subscribe(response => this.empresas = response);
     this.colaboradorForm = this.formBuilder.group({
       // Colaborador
       id_empresa: this.formBuilder.control('', [Validators.required]),

@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  api: 'https://numeobackend.herokuapp.com/'
+  api: 'https://numeobackend.herokuapp.com/api'
 };
