@@ -9,3 +9,15 @@ body{
 .select2-container--default .select2-selection--single .select2-selection__placeholder{
   color: #555;
 }
+.table-bordered {
+  border: 1px solid #eeeeee;
+}
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
+  border: 1px solid #eeeeee;
+}
+.btn-group-sm>.btn, .btn-sm {
+  padding: 2px 6px;
+  font-size: 11px;
+  line-height: 1.5;
+  border-radius: 3px;
+}

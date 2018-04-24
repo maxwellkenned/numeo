@@ -13,7 +13,7 @@ import { Pessoa } from './pessoa.model';
 export class PessoaService {
   constructor(private http: Http) {  }
 
-  pessoas(): Observable<Pessoa[]>{
+  pessoas(): Observable<Pessoa[]> {
     return this.http.get(`${API}/pessoas`)
               .map(response => response.json());
   }

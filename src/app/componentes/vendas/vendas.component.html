@@ -3,80 +3,106 @@
   <div class="box box-solid">
     <div class="box-body">
       <form [formGroup]="vendasForm">
-        <div class="row">
-          <div class="col-xs-12">
-            <h2 class="page-header">Realizar nova venda</h2>
+          <div class="row">
+            <div class="col-xs-12">
+              <h2 class="page-header">Realizar nova venda</h2>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4 col-xs-12">
-            <mt-input-container errorMessage="Campo obrigatório" label="Cliente" forId="id_cliente">
-              <select class="form-control" formControlName="id_cliente" id="id_cliente" autocomplete="off">
-                <option value selected disabled hidden>Informe o responsável pela empresa</option>
-                <option *ngFor="let c of clientes" value="{{c.id_pessoa}}">{{c.nome_pessoa}}</option>
-              </select>
-            </mt-input-container>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <mt-input-container errorMessage="Campo obrigatório" label="Vendedor" forId="id_vendedor">
-              <select class="form-control" formControlName="id_vendedor" id="id_vendedor" autocomplete="off">
-                <option value selected disabled hidden>Informe o responsável pela empresa</option>
-                <option *ngFor="let v of vendedores" value="{{v.id_colaborador}}">{{v.nome_pessoa}}</option>
-              </select>
-            </mt-input-container>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <mt-input-container errorMessage="Campo obrigatório" label="Empresa" forId="id_empresa">
-              <select class="form-control" formControlName="id_empresa" id="id_empresa" autocomplete="off">
-                <option value selected disabled hidden>Informe o responsável pela empresa</option>
-                <option *ngFor="let e of empresas" value="{{e.id_empresa}}">{{e.nome_fantasia}}</option>
-              </select>
-            </mt-input-container>
-          </div>
-          <div class="col-sm-6 col-xs-12">
-            <mt-input-container errorMessage="Campo obrigatório" label="Serviços" forId="id_servico">
-              <select class="form-control" formControlName="id_servico" id="id_servico" autocomplete="off">
-                <option value selected disabled hidden>Informe o responsável pela empresa</option>
-                <option *ngFor="let s of servicos" value="{{s.id_servico}}">{{s.ds_servico}} | {{ s.vl_servico | currency:'BRL':'true'}}</option>
-              </select>
-            </mt-input-container>
-          </div>
-          <div class="col-sm-6 col-xs-12">
-            <div class="box box-solid">
-              <div class="box-header">
-                <i class="fa fa-shopping-cart"></i>
-
-                <h3 class="box-title">Carrinho</h3>
-              </div>
-              <!-- /.box-header -->
-              <div class="box-body">
-
-                <div *ngIf="!items().length">
-                  <p class="text-center">
-                    Seu carrinho está vazio!
-                  </p>
+          <div class="row">
+            <div class="col-sm-8 col-xs-10">
+              <!-- Informações de Cliente/Vendedor/Serviços -->
+              <div class="col-xs-12">
+                <div class="col-sm-6 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="Cliente" forId="id_cliente">
+                    <select class="form-control" formControlName="id_cliente" id="id_cliente" autocomplete="off">
+                      <option value selected disabled hidden>Informe o cliente</option>
+                      <option *ngFor="let c of clientes" value="{{c.id_pessoa}}">{{c.nome_pessoa}}</option>
+                    </select>
+                  </mt-input-container>
                 </div>
-                <div class="table-responsive" *ngIf="items().length">
-                    <table class="table">
-                      <tbody>
-                      <tr *ngFor="let item of items()">
-                        <th>({{item.quantidade}}x) {{item.ds_servico}}</th>
-                        <td class="text-right">{{item.value() | currency: 'BRL': 'true'}}</td>
-                        <td class="text-right">
-                          <a (click)="removeItem(item)" class="btn btn-sm danger"><i class="fa fa-remove"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>Total:</th>
-                        <td class="text-right">{{total() | currency: 'BRL': 'true'}}</td>
-                      </tr>
-                    </tbody></table>
+                <div class="col-sm-6 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="Vendedor" forId="id_vendedor">
+                    <select class="form-control" formControlName="id_vendedor" id="id_vendedor" autocomplete="off">
+                      <option value selected disabled hidden>Informe o vendedor</option>
+                      <option *ngFor="let v of vendedores" value="{{v.id_colaborador}}">{{v.nome_pessoa}}</option>
+                    </select>
+                  </mt-input-container>
+                </div>
+              
+                <div class="col-sm-12 col-xs-12">
+                  <mt-input-container errorMessage="Campo obrigatório" label="Serviços" forId="id_servico">
+                    <select class="form-control" formControlName="id_servico" id="id_servico" autocomplete="off">
+                      <option value selected disabled hidden>Informe o responsável pela empresa</option>
+                      <option *ngFor="let s of servicos" value="{{s.id_servico}}">{{s.ds_servico}} | {{ s.vl_servico | currency:'BRL':'true'}}</option>
+                    </select>
+                  </mt-input-container>
+                </div>
+              </div>
+              <!-- Serviços mais vendidos -->
+              <div class="col-xs-12">
+                  <div class="table-responsive col-sm-12" *ngIf="servicos">
+                      <h3>Serviços mais vendidos</h3>
+                      <table class="table table-bordered table-striped table-hover table-sm table-dark">
+                        <thead>
+                          <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <th>Ações</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let servico of servicos; index as i">
+                            <th>{{servico.id_servico}}</th>
+                            <th>{{servico.ds_servico}}</th>
+                            <td>{{servico.vl_servico | currency:'BRL':'true'}}</td>
+                            <td>
+                              <button (click)="addItem(servico.id_servico)" type="button" class="btn btn-success btn-sm"><i class="fas fa-plus"></i></button>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
               </div>
-              <div class="box-footer" *ngIf="items().length">
-                <div class="pull-right">
-                  <button (click)="clear()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Limpar</button>
-                  <a (click)="salvar(vendasForm.value)"  class="btn btn-success"><i class="fa fa-credit-card"></i> Fechar Pedido</a>
+            </div>
+            <!-- Carrinho com serviços -->
+            <div class="col-sm-4">
+              <div class="col-sm-12 col-xs-12">
+                <div class="box box-solid">
+                  <div class="box-header">
+                    <i class="fa fa-shopping-cart"></i>
+                    <h3 class="box-title">Carrinho</h3>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <div *ngIf="!items().length">
+                      <p class="text-center">
+                        Seu carrinho está vazio!
+                      </p>
+                    </div>
+                    <div class="table-responsive" *ngIf="items().length">
+                      <table class="table">
+                        <tbody>
+                        <tr *ngFor="let item of items()">
+                          <th>({{item.quantidade}}x) {{item.ds_servico}}</th>
+                          <td class="text-right">{{item.value() | currency: 'BRL': 'true'}}</td>
+                          <td class="text-right">
+                            <a (click)="removeItem(item)" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Total:</th>
+                          <td class="text-right">{{total() | currency: 'BRL': 'true'}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="box-footer" *ngIf="items().length">
+                  <div class="pull-right">
+                    <button (click)="clear()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Limpar</button>
+                    <a (click)="salvar(vendasForm.value)"  class="btn btn-success"><i class="fa fa-credit-card"></i> Fechar Pedido</a>
+                  </div>
                 </div>
               </div>
             </div>

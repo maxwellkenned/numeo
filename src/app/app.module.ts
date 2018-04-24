@@ -4,6 +4,9 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules, ExtraOptions } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
 import { ROUTES } from './app.routes';
 
 import { AppComponent } from './app.component';
@@ -18,6 +21,8 @@ import { ServicoService } from './componentes/servico/servico.service';
 import { ColaboradorService } from './componentes/colaborador/colaborador.service';
 import { VendasComponent } from './componentes/vendas/vendas.component';
 
+registerLocaleData(localePt, 'pt');
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +35,11 @@ import { VendasComponent } from './componentes/vendas/vendas.component';
     HttpModule,
     BrowserAnimationsModule,
     SharedModule.forRoot(),
-    RouterModule.forRoot(ROUTES, {onSameUrlNavigation:"reload", preloadingStrategy: PreloadAllModules})
+    RouterModule.forRoot(ROUTES, {onSameUrlNavigation: 'reload', preloadingStrategy: PreloadAllModules})
   ],
-  providers: [PessoaService, EmpresaService, ColaboradorService, ClienteService, ServicoService],
+  providers: [
+    PessoaService, EmpresaService, ColaboradorService, ClienteService, ServicoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
