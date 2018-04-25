@@ -1,13 +1,16 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-declare var $;
+
 import { EmpresaService } from '../empresa/empresa.service';
 import { ColaboradorService } from '../colaborador/colaborador.service';
 import { ClienteService } from '../cliente/cliente.service';
 import { ServicoService } from '../servico/servico.service';
 import { Carrinho } from './carrinho/carrinho.model';
+import {NotificationService} from '../shared/messages/notification.service';
 
+declare var $;
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'nm-vendas',
   templateUrl: './vendas.component.html'
 })
@@ -24,7 +27,8 @@ export class VendasComponent implements OnInit, AfterViewInit {
               private empresaService: EmpresaService,
               private colaboradorService: ColaboradorService,
               private servicoService: ServicoService,
-              private clienteService: ClienteService) {
+              private clienteService: ClienteService,
+              private notificationService: NotificationService) {
                 this.clienteService.clientes().subscribe(response => this.clientes = response);
                 this.empresaService.empresas().subscribe(response => this.empresas = response);
                 this.colaboradorService.colaboradores().subscribe(response => this.vendedores = response);
@@ -40,55 +44,56 @@ export class VendasComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(){
-    let that = this;
+  ngAfterViewInit() {
+    const that = this;
     $('#id_cliente').select2({placeholder: 'Selecione o cliente'});
     $('#id_vendedor').select2({placeholder: 'Selecione o vendedor'});
     $('#id_empresa').select2({placeholder: 'Selecione a empresa'});
     $('#id_servico').select2({placeholder: 'Selecione os Servicos', allowClear: true});
 
-    $('#id_servico').on("select2:select", function(e){
-      let item = $('#id_servico').val();
+    $('#id_servico').on('select2:select', function(e) {
+      const item = Number($('#id_servico').val());
       that.addItem(item);
       $('#id_servico').val(null).trigger('change');
-    })
+    });
   }
 
-  items(){
+  items() {
     return this.itens;
   }
 
-  total(): number{
+  total(): number {
     return this.itens
       .map(item => item.value())
-      .reduce((prev, value)=> prev+value, 0)
+      .reduce((prev, value) => prev + value, 0);
   }
 
-  addItem(item: Carrinho[]){
-    let i = this.servicos.find((mItem)=> mItem["id_servico"] == item);
-    let foundItem = this.itens.find((fItem)=> fItem.id_servico == i['id_servico'])
-    if(foundItem){
+  addItem(item: number) {
+    const i = this.servicos.find((mItem) => mItem['id_servico'] === item);
+    const foundItem = this.itens.find((fItem) => fItem.id_servico === i['id_servico']);
+    if (foundItem) {
       this.addQuantidade(foundItem);
-    }else{
-      this.itens.push(new Carrinho(i['id_servico'], i['ds_servico'], i['vl_servico']))
+    }else {
+      this.itens.push(new Carrinho(i['id_servico'], i['ds_servico'], i['vl_servico']));
     }
+    this.notificationService.notify(`Você adicionou o serviço: ${i['ds_servico']}`, true);
   }
 
-  addQuantidade(item: Carrinho){
+  addQuantidade(item: Carrinho) {
     console.log(item);
     item.quantidade = item.quantidade + 1;
   }
 
-  salvar(venda){
-    console.log("venda", venda);
-    console.log("itens", this.itens);
+  salvar(venda) {
+    console.log('venda', venda);
+    console.log('itens', this.itens);
   }
 
-  clear(){
-    this.itens = []
+  clear() {
+    this.itens = [];
   }
 
-  removeItem(item: Carrinho){
+  removeItem(item: Carrinho) {
     this.itens.splice(this.itens.indexOf(item), 1);
   }
 

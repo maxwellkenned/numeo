@@ -13,16 +13,16 @@ import { ServicoComponent } from './servico.component';
 export class ServicoService {
   constructor(private http: Http) {  }
 
-  salvar(servico: string): Observable<string>{
+  salvar(servico: string): Observable<string> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post(`${API}/servicos`,
                     JSON.stringify(servico),
                     new RequestOptions({headers: headers}))
-                    .map(response => response.json())
+                    .map(response => response.json());
   }
 
-  servicos(): Observable<string[]>{
+  servicos(): Observable<string[]> {
     return this.http.get(`${API}/servicos`)
               .map(response => response.json());
   }

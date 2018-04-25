@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules, ExtraOptions } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +20,7 @@ import { ClienteService } from './componentes/cliente/cliente.service';
 import { ServicoService } from './componentes/servico/servico.service';
 import { ColaboradorService } from './componentes/colaborador/colaborador.service';
 import { VendasComponent } from './componentes/vendas/vendas.component';
+import { FinalizarVendaComponent } from './componentes/vendas/finalizar-venda/finalizar-venda.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -28,7 +29,8 @@ registerLocaleData(localePt, 'pt');
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    VendasComponent
+    VendasComponent,
+    FinalizarVendaComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,7 @@ registerLocaleData(localePt, 'pt');
     RouterModule.forRoot(ROUTES, {onSameUrlNavigation: 'reload', preloadingStrategy: PreloadAllModules})
   ],
   providers: [
-    PessoaService, EmpresaService, ColaboradorService, ClienteService, ServicoService
+    PessoaService, EmpresaService, ColaboradorService, ClienteService, ServicoService, {provide: LOCALE_ID, useValue: 'pt-Br'}
   ],
   bootstrap: [AppComponent]
 })

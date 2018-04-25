@@ -1,11 +1,16 @@
 <header class="main-header">
   <a [routerLink]="['/']" class="logo">
-    <span class="logo-mini">NUM</span>
-    <span class="logo-lg">NUMEO</span>
+    <span class="logo-mini">
+      <img src="assets/img/logo_mini.png" class="user-image" alt="User Image" style="width: 84%">
+    </span>
+    <span class="logo-lg">
+        <img src="assets/img/logo.png" class="user-image" alt="User Image" style="width: 100%">
+    </span>
   </a>
 
   <nav class="navbar navbar-static-top">
     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <i class="fas fa-bars fa-lg"></i>
       <span class="sr-only">Toggle navigation</span>
     </a>
     <!-- Navbar Menu da Direita -->
@@ -39,7 +44,7 @@
         <!-- Botão de ferramentas no sidebar direito -->
         <li>
           <a href="#" data-toggle="control-sidebar">
-            <i class="fa fa-gears"></i>
+            <i class="fas fa-cogs"></i>
           </a>
         </li>
       </ul>
@@ -81,25 +86,25 @@
         <ul class="treeview-menu">
           <li>
             <a [routerLink]="['lista/empresa']">
-              <i class="fa fa-user-o"></i>
+              <i class="fas fa-industry"></i>
               <span>Empresa</span>
             </a>
           </li>
           <li>
             <a [routerLink]="['lista/colaborador']">
-              <i class="fa fa-user-o"></i>
+              <i class="fas fa-user-circle"></i>
               <span>Colaborador</span>
             </a>
           </li>
           <li>
             <a [routerLink]="['lista/servico']">
-              <i class="fa fa-user-o"></i>
+              <i class="fas fa-dolly"></i>
               <span>Serviço</span>
             </a>
           </li>
           <li>
             <a [routerLink]="['lista/cliente']">
-              <i class="fa fa-user-o"></i>
+              <i class="fas fa-address-card"></i>
               <span>Cliente</span>
             </a>
           </li>

@@ -1,23 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
-body{
+body {
   margin: 0;
+}
+.content {
+  padding: 1px 15px;
+}
+.control-label label {
+  display: block;
+}
+.select2-container--default .select2-selection--single {
+  border-radius: unset;
 }
 .select2-container--default .select2-selection--single .select2-selection__rendered {
   line-height: 23px;
-
 }
-.select2-container--default .select2-selection--single .select2-selection__placeholder{
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
   color: #555;
 }
-.table-bordered {
-  border: 1px solid #eeeeee;
+.select2-dropdown {
+  border-radius: unset;
 }
-.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
-  border: 1px solid #eeeeee;
-}
-.btn-group-sm>.btn, .btn-sm {
+.btn-group-sm > .btn,
+.btn-sm {
   padding: 2px 6px;
   font-size: 11px;
   line-height: 1.5;
   border-radius: 3px;
+}
+div#mais_vendidos div {
+  max-height: 276px;
+}
+div#mais_vendidos h3 {
+  margin-top: 0;
+}
+div#carrinho #carrinho_itens {
+  max-height: 312px;
+  min-height: 312px;
+}
+div#carrinho #carrinho_total h4 {
+  display: inline-block;
+}
+.main-header a::before {
+  display: none;
+}
+.box {
+  margin-bottom: 0;
+}
+@media (min-width: 768px) {
+  #input_vendedor {
+    margin-left: -5px;
+  }
 }

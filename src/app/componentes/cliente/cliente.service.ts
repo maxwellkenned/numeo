@@ -15,7 +15,7 @@ import { ListaColaborador } from '../../lista/lista-colaborador/lista-colaborado
 export class ClienteService {
   constructor(private http: Http) { }
 
-  salvar(cliente: string): Observable<string>{
+  salvar(cliente: string): Observable<string> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 

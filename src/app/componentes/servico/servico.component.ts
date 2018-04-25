@@ -8,6 +8,7 @@ import { ServicoService } from './servico.service';
 import { NotificationService } from '../shared/messages/notification.service';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'nm-servico',
   templateUrl: './servico.component.html'
 })
@@ -32,16 +33,16 @@ export class ServicoComponent implements OnInit {
   }
 
 
-  salvar(servico: string){
-    console.log('Servico', servico)
+  salvar(servico: string) {
+    console.log('Servico', servico);
     this.servicoService.salvar(servico)
       .subscribe((response: string) => {
-        if(response['status']){
+        if (response['status']) {
           $('#modal').modal('hide');
           this.router.navigate(['/lista/servico']);
-          this.notification.notify('Serviço cadastrado com sucesso.', true)
+          this.notification.notify('Serviço cadastrado com sucesso.', true);
         } else {
-          this.notification.notify(response['data'].toString(), false)
+          this.notification.notify(response['data'].toString(), false);
         }
       });
   }

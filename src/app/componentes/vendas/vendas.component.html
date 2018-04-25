@@ -9,7 +9,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-8 col-xs-10">
+            <div class="col-sm-8 col-xs-12">
               <!-- Informações de Cliente/Vendedor/Serviços -->
               <div class="col-xs-12">
                 <div class="col-sm-6 col-xs-12">
@@ -20,7 +20,7 @@
                     </select>
                   </mt-input-container>
                 </div>
-                <div class="col-sm-6 col-xs-12">
+                <div class="col-sm-6 col-xs-12" id="input_vendedor">
                   <mt-input-container errorMessage="Campo obrigatório" label="Vendedor" forId="id_vendedor">
                     <select class="form-control" formControlName="id_vendedor" id="id_vendedor" autocomplete="off">
                       <option value selected disabled hidden>Informe o vendedor</option>
@@ -39,9 +39,9 @@
                 </div>
               </div>
               <!-- Serviços mais vendidos -->
-              <div class="col-xs-12">
+              <div class="col-xs-12" id="mais_vendidos">
+                  <h3 class="col-sm-12">Serviços mais vendidos</h3>
                   <div class="table-responsive col-sm-12" *ngIf="servicos">
-                      <h3>Serviços mais vendidos</h3>
                       <table class="table table-bordered table-striped table-hover table-sm table-dark">
                         <thead>
                           <tr>
@@ -66,7 +66,7 @@
               </div>
             </div>
             <!-- Carrinho com serviços -->
-            <div class="col-sm-4">
+            <div class="col-sm-4" id="carrinho">
               <div class="col-sm-12 col-xs-12">
                 <div class="box box-solid">
                   <div class="box-header">
@@ -80,7 +80,7 @@
                         Seu carrinho está vazio!
                       </p>
                     </div>
-                    <div class="table-responsive" *ngIf="items().length">
+                    <div class="table-responsive" id="carrinho_itens" *ngIf="items().length">
                       <table class="table">
                         <tbody>
                         <tr *ngFor="let item of items()">
@@ -90,18 +90,18 @@
                             <a (click)="removeItem(item)" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
                           </td>
                         </tr>
-                        <tr>
-                          <th>Total:</th>
-                          <td class="text-right">{{total() | currency: 'BRL': 'true'}}</td>
-                        </tr>
                       </tbody>
                     </table>
+                  </div>
+                  <div id="carrinho_total" *ngIf="total()>0">
+                    <h4>Total:</h4>
+                    <h4 class="pull-right">{{total() | currency: 'BRL': 'true'}}</h4>
                   </div>
                 </div>
                 <div class="box-footer" *ngIf="items().length">
                   <div class="pull-right">
                     <button (click)="clear()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Limpar</button>
-                    <a (click)="salvar(vendasForm.value)"  class="btn btn-success"><i class="fa fa-credit-card"></i> Fechar Pedido</a>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal"><i class="fa fa-credit-card"></i> Fechar Pedido</button>
                   </div>
                 </div>
               </div>
@@ -112,3 +112,13 @@
     </div>
   </div>
 </section>
+
+
+
+<div class="modal fade in" id="modal" tabindex="-1" role="dialog" aria-labelledby="Cadastro de Colaboradores">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <nm-finalizar-venda></nm-finalizar-venda>
+    </div>
+  </div>
+</div>
