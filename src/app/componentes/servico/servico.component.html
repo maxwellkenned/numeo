@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-sm-4 col-xs-12">
                           <mt-input-container errorMessage="Campo obrigatório" label="Empresa" forId="id_empresa">
-                            <select class="form-control" formControlName="id_empresa" id="id_empresa">
+                            <select class="form-control" formControlName="id_empresa" id="id_empresa_servico">
                               <option *ngIf="empresas.length < 1" value selected disabled hidden>Nenhuma empresa cadastrada</option>
                               <option *ngIf="empresas.length > 0" value selected hidden>Informe a empresa</option>
                               <option *ngFor="let empresa of empresas" value="{{empresa.id_empresa}}">{{empresa.nome_fantasia}}</option>

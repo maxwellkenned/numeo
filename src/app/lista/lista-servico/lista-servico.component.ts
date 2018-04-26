@@ -16,11 +16,11 @@ export class ListaServicoComponent implements OnInit {
     this.servicoService.servicos().subscribe(response => this.servicos = response);
   }
 
-  ngAfterViewInit(){
-    var that = this;
-    $('#modal').on('hide.bs.modal', function () {
+  ngAfterViewInit() {
+    const that = this;
+    $('#modal_servico').on('hide.bs.modal', function () {
       that.servicoService.servicos().subscribe(response => that.servicos = response);
-    })
+    });
   }
 
 }

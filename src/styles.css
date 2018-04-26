@@ -7,6 +7,12 @@ body {
 .control-label label {
   display: block;
 }
+span.select2.select2-container.select2-container--default.select2-container--focus {
+  width: 100% !important;
+}
+span.select2.select2-container.select2-container--default {
+  width: 100% !important;
+}
 .select2-container--default .select2-selection--single {
   border-radius: unset;
 }
@@ -45,8 +51,12 @@ div#carrinho #carrinho_total h4 {
 .box {
   margin-bottom: 0;
 }
+.btn-novo {
+  color: #00a65a;
+}
 @media (min-width: 768px) {
-  #input_vendedor {
-    margin-left: -5px;
+  .max-height-sm {
+    max-height: 465px;
+    margin-left: 10px;
   }
 }

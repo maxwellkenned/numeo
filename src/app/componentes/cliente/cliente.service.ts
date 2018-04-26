@@ -22,7 +22,7 @@ export class ClienteService {
     return this.http.post(`${API}/clientes`,
                           JSON.stringify(cliente),
                           new RequestOptions({headers: headers}))
-                          .map(response => response.json())
+                          .map(response => response.json());
   }
 
   clientes(): Observable<string[]> {

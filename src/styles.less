@@ -12,6 +12,12 @@ body{
         display: block;
     }
 }
+span.select2.select2-container.select2-container--default.select2-container--focus{
+    width: 100% !important;
+}
+span.select2.select2-container.select2-container--default{
+    width: 100% !important;
+}
 .select2-container--default .select2-selection--single {
     border-radius: unset;
     .select2-selection__rendered{
@@ -58,8 +64,13 @@ div#carrinho{
     margin-bottom: 0;
 }
 
+.btn-novo{
+    color: #00a65a;
+}
+
 @media (min-width: @screen-sm-min) {
-    #input_vendedor{
-        margin-left: -5px;
+    .max-height-sm{
+        max-height: 465px;
+        margin-left: 10px;
     }
 }

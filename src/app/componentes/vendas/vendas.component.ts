@@ -56,6 +56,16 @@ export class VendasComponent implements OnInit, AfterViewInit {
       that.addItem(item);
       $('#id_servico').val(null).trigger('change');
     });
+
+    $('#modal_cliente').on('hide.bs.modal', function () {
+      that.clienteService.clientes().subscribe(response => that.clientes = response);
+    });
+    $('#modal_colaborador').on('hide.bs.modal', function () {
+      that.colaboradorService.colaboradores().subscribe(response => that.vendedores = response);
+    });
+    $('#modal_servico').on('hide.bs.modal', function () {
+      that.servicoService.servicos().subscribe(response => that.servicos = response);
+    });
   }
 
   items() {

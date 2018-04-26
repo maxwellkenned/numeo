@@ -21,11 +21,11 @@ import { CadastroModule } from '../cadastro/cadastro.module';
 import { CepService } from '../componentes/shared/cep/cep.service';
 
 const ListaROUTES = [
-  {path:'colaborador', component: ListaColaboradorComponent},
-  {path:'empresa', component: ListaEmpresaComponent},
-  {path:'servico', component: ListaServicoComponent},
-  {path:'cliente', component: ListaClienteComponent},
-]
+  {path: 'colaborador', component: ListaColaboradorComponent},
+  {path: 'empresa', component: ListaEmpresaComponent},
+  {path: 'servico', component: ListaServicoComponent},
+  {path: 'cliente', component: ListaClienteComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forChild(ListaROUTES), CommonModule, SharedModule, CadastroModule],

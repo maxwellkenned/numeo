@@ -38,8 +38,8 @@ export class ServicoComponent implements OnInit {
     this.servicoService.salvar(servico)
       .subscribe((response: string) => {
         if (response['status']) {
-          $('#modal').modal('hide');
-          this.router.navigate(['/lista/servico']);
+          $('#modal_servico').modal('hide');
+          this.router.navigate([this.router.url]);
           this.notification.notify('Serviço cadastrado com sucesso.', true);
         } else {
           this.notification.notify(response['data'].toString(), false);

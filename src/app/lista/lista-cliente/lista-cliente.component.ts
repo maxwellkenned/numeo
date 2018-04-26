@@ -9,7 +9,7 @@ import { ClienteService } from '../../componentes/cliente/cliente.service';
 })
 export class ListaClienteComponent implements OnInit {
 
-  clientes: string[]
+  clientes: string[];
 
   constructor(private clienteService: ClienteService) { }
 
@@ -17,11 +17,11 @@ export class ListaClienteComponent implements OnInit {
     this.clienteService.clientes().subscribe(response => this.clientes = response);
   }
 
-  ngAfterViewInit(){
-    var that = this;
+  ngAfterViewInit() {
+    const that = this;
     $('#modal').on('hide.bs.modal', function () {
       that.clienteService.clientes().subscribe(response => that.clientes = response);
-    })
+    });
   }
 
 }

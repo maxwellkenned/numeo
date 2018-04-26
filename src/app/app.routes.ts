@@ -7,4 +7,4 @@ export const ROUTES: Routes = [
   {path: 'lista', children: [
     {path: '', loadChildren: './lista/lista.module#ListaModule'}
   ]}
-]
+];

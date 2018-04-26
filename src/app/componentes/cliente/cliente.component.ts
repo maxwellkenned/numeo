@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 import { Router } from '@angular/router';
@@ -14,78 +14,78 @@ declare var $;
   selector: 'nm-cliente',
   templateUrl: './cliente.component.html'
 })
-export class ClienteComponent implements OnInit {
-  emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+export class ClienteComponent implements OnInit, AfterViewInit {
+  emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   clienteForm: FormGroup;
   jsonCep: Cep;
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private clienteService: ClienteService,
               private cepService: CepService,
-              private notification: NotificationService) { }
+              private notification: NotificationService) {}
 
   ngOnInit() {
     this.clienteForm = this.formBuilder.group({
       // Pessoa
       nome_pessoa: this.formBuilder.control('', [Validators.required]),
       email: this.formBuilder.control('', Validators.pattern(this.emailPattern)),
-      telefone: this.formBuilder.control('',),
-      celular: this.formBuilder.control('',),
+      telefone: this.formBuilder.control('', ),
+      celular: this.formBuilder.control('', ),
       pessoa_contato: this.formBuilder.control(''),
-      cep: this.formBuilder.control('',),
-      endereco: this.formBuilder.control('',),
-      endereco_numero: this.formBuilder.control('',),
-      complemento: this.formBuilder.control('',),
-      bairro: this.formBuilder.control('',),
-      cidade: this.formBuilder.control('',),
-      estado: this.formBuilder.control('',),
-      pais: this.formBuilder.control('',),
-      sexo: this.formBuilder.control('',),
-      cpf: this.formBuilder.control('',),
-      rg: this.formBuilder.control('',),
-    },{updateOn: 'blur'})
+      cep: this.formBuilder.control('', ),
+      endereco: this.formBuilder.control('', ),
+      endereco_numero: this.formBuilder.control('', ),
+      complemento: this.formBuilder.control('', ),
+      bairro: this.formBuilder.control('', ),
+      cidade: this.formBuilder.control('', ),
+      estado: this.formBuilder.control('', ),
+      pais: this.formBuilder.control('', ),
+      sexo: this.formBuilder.control('', ),
+      cpf: this.formBuilder.control('', ),
+      rg: this.formBuilder.control('', ),
+    }, {updateOn: 'blur'});
   }
 
 
-  salvar(cliente: string){
+  salvar(cliente: string) {
     this.clienteService.salvar(cliente)
     .subscribe((response: string) => {
-      if(response['status']){
-        $('#modal').modal('hide');
-        this.router.navigate(['/lista/cliente']);
+      if (response['status']) {
+        $('#modal_cliente').modal('hide');
+        this.router.navigate([this.router.url]);
         this.notification.notify('Cliente cadastrado com sucesso.', true);
       } else {
-        this.notification.notify(response['data'].toString(), false)
+        this.notification.notify(response['data'].toString(), false);
       }
-    })
+    });
   }
 
-  ngAfterViewInit(){
-    $('#cpf').inputmask("999.999.999-99",{ autoUnmask: true, rightAlign: false, clearMaskOnLostFocus: true})
-    $('#cep').inputmask("99999-999",{ autoUnmask: true, rightAlign: false, clearMaskOnLostFocus: true})
+  ngAfterViewInit () {
+    $('#cpf_cliente').inputmask('999.999.999-99', { autoUnmask: true, rightAlign: false, clearMaskOnLostFocus: true});
+    $('#cep_cliente').inputmask('99999-999', { autoUnmask: true, rightAlign: false, clearMaskOnLostFocus: true});
   }
 
-  getValueCPF(){
-    var cpf = $('#cpf').inputmask('unmaskedvalue')
-    this.clienteForm.get('cpf').setValue(cpf)
+  getValueCPF() {
+    const cpf = $('#cpf_cliente').inputmask('unmaskedvalue');
+    this.clienteForm.get('cpf_cliente').setValue(cpf);
   }
 
-  setValueCep(){
-    var cep = $('#cep').inputmask('unmaskedvalue')
-    this.clienteForm.get('cep').setValue(cep)
+  setValueCep() {
+    const cep = $('#cep_cliente').inputmask('unmaskedvalue');
+    this.clienteForm.get('cep_cliente').setValue(cep);
     this.buscarCep(cep);
   }
 
-  buscarCep(cep: string){
+  buscarCep(cep: string) {
     console.log(cep);
-    if(cep.length === 8 ){
-      cep = cep.replace(/[^0-9]/g,'');
+    if (cep.length === 8 ) {
+      cep = cep.replace(/[^0-9]/g, '');
 
-      $('#endereco').val('...');
-      $('#bairro').val('...');
-      $('#cidade').val('...');
-      $('#estado').val('...');
-      $('#pais').val('...');
+      $('#endereco_cliente').val('...');
+      $('#bairro_cliente').val('...');
+      $('#cidade_cliente').val('...');
+      $('#estado_cliente').val('...');
+      $('#pais_cliente').val('...');
 
 
       this.cepService.getCEP(cep).subscribe({
@@ -93,18 +93,18 @@ export class ClienteComponent implements OnInit {
           this.jsonCep = response;
         },
         error: (error) => {
-          $('#endereco').val('');
-          $('#bairro').val('');
-          $('#cidade').val('');
-          $('#estado').val('');
-          $('#pais').val('');
+          $('#endereco_cliente').val('');
+          $('#bairro_cliente').val('');
+          $('#cidade_cliente').val('');
+          $('#estado_cliente').val('');
+          $('#pais_cliente').val('');
         },
         complete: () => {
           this.clienteForm.get('endereco').setValue(this.jsonCep.logradouro);
           this.clienteForm.get('bairro').setValue(this.jsonCep.bairro);
           this.clienteForm.get('cidade').setValue(this.jsonCep.localidade);
           this.clienteForm.get('estado').setValue(this.jsonCep.uf);
-          this.clienteForm.get('pais').setValue("Brasil");
+          this.clienteForm.get('pais').setValue('Brasil');
         }
       });
     }

@@ -70,15 +70,15 @@
                   <div class="row">
                 <div class="col-sm-2 col-xs-12">
                   <mt-input-container errorMessage="Campo obrigatório" label="CEP" forId="cep">
-                    <input type="text" class="form-control" id="cep" formControlName="cep" placeholder="Informe o cep"  autocomplete="off">
+                    <input type="text" class="form-control" id="cep" formControlName="cep" placeholder="Informe o cep"  autocomplete="off" (blur)="setValueCep()">
                   </mt-input-container>
                 </div>
-                <div class="col-sm-5 col-xs-12">
+                <div class="col-sm-4 col-xs-12">
                   <mt-input-container errorMessage="Campo obrigatório" label="Endereço" forId="endereco">
                     <input type="text" class="form-control" id="endereco" formControlName="endereco" placeholder="Informe o endereço"  autocomplete="off">
                   </mt-input-container>
                 </div>
-                <div class="col-sm-1 col-xs-12">
+                <div class="col-sm-2 col-xs-12">
                   <mt-input-container errorMessage="Campo obrigatório" label="Número" forId="endereco_numero">
                     <input type="text" class="form-control" id="endereco_numero" formControlName="endereco_numero" placeholder="000"  autocomplete="off">
                   </mt-input-container>

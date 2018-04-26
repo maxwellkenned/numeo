@@ -21,6 +21,7 @@ import { ServicoService } from './componentes/servico/servico.service';
 import { ColaboradorService } from './componentes/colaborador/colaborador.service';
 import { VendasComponent } from './componentes/vendas/vendas.component';
 import { FinalizarVendaComponent } from './componentes/vendas/finalizar-venda/finalizar-venda.component';
+import { VendasModule } from './componentes/vendas/vendas.module';
 
 registerLocaleData(localePt, 'pt');
 
@@ -28,14 +29,13 @@ registerLocaleData(localePt, 'pt');
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
-    VendasComponent,
-    FinalizarVendaComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     BrowserAnimationsModule,
+    VendasModule,
     SharedModule.forRoot(),
     RouterModule.forRoot(ROUTES, {onSameUrlNavigation: 'reload', preloadingStrategy: PreloadAllModules})
   ],

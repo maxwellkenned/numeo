@@ -1,6 +1,6 @@
 import { Pessoa } from '../pessoa/pessoa.model';
 
-export class Colaborador{
+export class Colaborador {
   constructor(public pessoa: Pessoa,
               public id_colaborador: number,
               public id_empresa: number,
@@ -13,6 +13,6 @@ export class Colaborador{
               public clt_pis: string,
               public escolaridade: string,
               public frequencia_pagamento: string
-              ){}
+              ) {}
 
 }

@@ -19,11 +19,11 @@ export class ListaColaboradorComponent implements OnInit {
 
   }
 
-  ngAfterViewInit(){
-    var that = this;
-    $('#modal').on('hide.bs.modal', function () {
+  ngAfterViewInit() {
+    const that = this;
+    $('#modal_colaborador').on('hide.bs.modal', function () {
       that.colaboradorService.colaboradores().subscribe(response => that.colaboradores = response);
-    })
+    });
   }
 
 }
