@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Carrinho } from '../carrinho/carrinho.model';
 import {NotificationService} from '../../shared/messages/notification.service';
@@ -10,7 +10,7 @@ declare var $;
   selector: 'nm-finalizar-venda',
   templateUrl: './finalizar-venda.component.html'
 })
-export class FinalizarVendaComponent implements OnInit, AfterViewInit {
+export class FinalizarVendaComponent implements OnInit {
 
   servicos: string[];
   vendasForm: FormGroup;
@@ -19,10 +19,6 @@ export class FinalizarVendaComponent implements OnInit, AfterViewInit {
               private notificationService: NotificationService) { }
 
   ngOnInit() {}
-
-  ngAfterViewInit() {
-    $('#preco').inputmask('999.999,99', { autoUnmask: true, rightAlign: false, clearMaskOnLostFocus: true});
-  }
 
   items() {
     return this.carrinhoService.items();

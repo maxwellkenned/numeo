@@ -57,6 +57,9 @@ div#carrinho #carrinho_total h4 {
 .btn-novo:hover {
   cursor: pointer;
 }
+label.help.pull-right.ng-star-inserted {
+  font-size: 10px;
+}
 @media (min-width: 768px) {
   .max-height-sm {
     max-height: 465px;
