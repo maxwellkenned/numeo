@@ -7,11 +7,12 @@ import { CadastroModule } from '../../cadastro/cadastro.module';
 import { CepService } from '../shared/cep/cep.service';
 import { VendasComponent } from './vendas.component';
 import { FinalizarVendaComponent } from './finalizar-venda/finalizar-venda.component';
+import { CarrinhoService } from './carrinho/carrinho.service';
 
 @NgModule({
   imports: [CommonModule, SharedModule, CadastroModule],
   declarations: [VendasComponent, FinalizarVendaComponent],
-  providers: [CepService],
+  providers: [CepService, CarrinhoService],
   exports: [VendasComponent, FinalizarVendaComponent]
 })
 export class VendasModule {}

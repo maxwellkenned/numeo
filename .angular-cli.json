@@ -19,13 +19,14 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "nm",
       "styles": [
-        "assets/fontawesome/css/fontawesome-all.min.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "assets/fontawesome/css/fontawesome-all.min.css",
         "../node_modules/admin-lte/dist/css/AdminLTE.min.css",
         "../node_modules/admin-lte/dist/css/skins/skin-blue.min.css",
+        "styles.css",
         "assets/select2/css/select2.min.css",
-        "../node_modules/inputmask/css/inputmask.css",
-        "styles.css"
+        "../node_modules/inputmask/css/inputmask.css"
+        
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",

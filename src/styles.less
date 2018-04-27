@@ -66,11 +66,23 @@ div#carrinho{
 
 .btn-novo{
     color: #00a65a;
+    &:hover{
+        cursor: pointer;
+    }
 }
 
 @media (min-width: @screen-sm-min) {
     .max-height-sm{
         max-height: 465px;
         margin-left: 10px;
+    }
+    input{
+        &.finalizar{
+        padding: 1px 1px;
+        }
+        &.finalizar-quantidade{
+            margin: 0 5px;
+            padding: 1px 1px 1px 10px;
+        }
     }
 }

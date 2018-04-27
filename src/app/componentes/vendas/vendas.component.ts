@@ -7,6 +7,7 @@ import { ClienteService } from '../cliente/cliente.service';
 import { ServicoService } from '../servico/servico.service';
 import { Carrinho } from './carrinho/carrinho.model';
 import {NotificationService} from '../shared/messages/notification.service';
+import { CarrinhoService } from './carrinho/carrinho.service';
 
 declare var $;
 @Component({
@@ -20,7 +21,6 @@ export class VendasComponent implements OnInit, AfterViewInit {
   empresas: string[];
   vendedores: string[];
   servicos: string[];
-  itens: Carrinho[] = [];
   vendasForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
@@ -28,6 +28,7 @@ export class VendasComponent implements OnInit, AfterViewInit {
               private colaboradorService: ColaboradorService,
               private servicoService: ServicoService,
               private clienteService: ClienteService,
+              private carrinhoService: CarrinhoService,
               private notificationService: NotificationService) {
                 this.clienteService.clientes().subscribe(response => this.clientes = response);
                 this.empresaService.empresas().subscribe(response => this.empresas = response);
@@ -69,42 +70,35 @@ export class VendasComponent implements OnInit, AfterViewInit {
   }
 
   items() {
-    return this.itens;
+    return this.carrinhoService.items();
   }
 
   total(): number {
-    return this.itens
-      .map(item => item.value())
-      .reduce((prev, value) => prev + value, 0);
+    return this.carrinhoService.total();
   }
 
   addItem(item: number) {
     const i = this.servicos.find((mItem) => mItem['id_servico'] === item);
-    const foundItem = this.itens.find((fItem) => fItem.id_servico === i['id_servico']);
+    const foundItem = this.carrinhoService.itens.find((fItem) => fItem.id_servico === i['id_servico']);
     if (foundItem) {
-      this.addQuantidade(foundItem);
+      this.carrinhoService.addQuantidade(foundItem);
     }else {
-      this.itens.push(new Carrinho(i['id_servico'], i['ds_servico'], i['vl_servico']));
+      this.carrinhoService.itens.push(new Carrinho(i['id_servico'], i['ds_servico'], i['vl_servico']));
     }
     this.notificationService.notify(`Você adicionou o serviço: ${i['ds_servico']}`, true);
   }
 
-  addQuantidade(item: Carrinho) {
-    console.log(item);
-    item.quantidade = item.quantidade + 1;
-  }
-
   salvar(venda) {
     console.log('venda', venda);
-    console.log('itens', this.itens);
+    console.log('itens', this.carrinhoService.itens);
   }
 
   clear() {
-    this.itens = [];
+    this.carrinhoService.clear();
   }
 
   removeItem(item: Carrinho) {
-    this.itens.splice(this.itens.indexOf(item), 1);
+    this.carrinhoService.removeItem(item);
   }
 
 }

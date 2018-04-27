@@ -1,65 +1,63 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Carrinho } from '../carrinho/carrinho.model';
 import {NotificationService} from '../../shared/messages/notification.service';
+import { CarrinhoService } from '../carrinho/carrinho.service';
+
+declare var $;
+
 @Component({
   selector: 'nm-finalizar-venda',
   templateUrl: './finalizar-venda.component.html'
 })
-export class FinalizarVendaComponent implements OnInit {
+export class FinalizarVendaComponent implements OnInit, AfterViewInit {
 
   servicos: string[];
-  itens: Carrinho[] = [];
   vendasForm: FormGroup;
 
-  finalizarForm: FormGroup;
-  constructor(private formBuilder: FormBuilder,
+  constructor(private carrinhoService: CarrinhoService,
               private notificationService: NotificationService) { }
 
-  ngOnInit() {
-    this.finalizarForm = this.formBuilder.group({
-      id_pagamento: this.formBuilder.control(''),
-      vl_pago: this.formBuilder.control('')
-    });
+  ngOnInit() {}
+
+  ngAfterViewInit() {
+    $('#preco').inputmask('999.999,99', { autoUnmask: true, rightAlign: false, clearMaskOnLostFocus: true});
   }
 
   items() {
-    return this.itens;
+    return this.carrinhoService.items();
   }
 
   total(): number {
-    return this.itens
-      .map(item => item.value())
-      .reduce((prev, value) => prev + value, 0);
-  }
-
-  addItem(item: number) {
-    const i = this.servicos.find((mItem) => mItem['id_servico'] === item);
-    const foundItem = this.itens.find((fItem) => fItem.id_servico === i['id_servico']);
-    if (foundItem) {
-      this.addQuantidade(foundItem);
-    }else {
-      this.itens.push(new Carrinho(i['id_servico'], i['ds_servico'], i['vl_servico']));
-    }
-    this.notificationService.notify(`Você adicionou o serviço: ${i['ds_servico']}`, true);
-  }
-
-  addQuantidade(item: Carrinho) {
-    console.log(item);
-    item.quantidade = item.quantidade + 1;
+    return this.carrinhoService.total();
   }
 
   salvar(venda) {
     console.log('venda', venda);
-    console.log('itens', this.itens);
+    console.log('itens', this.carrinhoService.itens);
   }
 
   clear() {
-    this.itens = [];
+    this.carrinhoService.clear();
   }
 
   removeItem(item: Carrinho) {
-    this.itens.splice(this.itens.indexOf(item), 1);
+    this.carrinhoService.removeItem(item);
+  }
+
+  addQuantidade(item) {
+    this.carrinhoService.addQuantidade(item);
+  }
+
+  attQuantidade(item, quantidade) {
+      this.carrinhoService.attQuantidade(item, quantidade);
+  }
+  remQuantidade(item) {
+    this.carrinhoService.remQuantidade(item);
+  }
+
+  attPreco(item, preco) {
+    this.carrinhoService.attPreco(item, preco);
   }
 
 }

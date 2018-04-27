@@ -67,12 +67,12 @@ export class ClienteComponent implements OnInit, AfterViewInit {
 
   getValueCPF() {
     const cpf = $('#cpf_cliente').inputmask('unmaskedvalue');
-    this.clienteForm.get('cpf_cliente').setValue(cpf);
+    this.clienteForm.get('cpf').setValue(cpf);
   }
 
   setValueCep() {
     const cep = $('#cep_cliente').inputmask('unmaskedvalue');
-    this.clienteForm.get('cep_cliente').setValue(cep);
+    this.clienteForm.get('cep').setValue(cep);
     this.buscarCep(cep);
   }
 

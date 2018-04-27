@@ -54,9 +54,19 @@ div#carrinho #carrinho_total h4 {
 .btn-novo {
   color: #00a65a;
 }
+.btn-novo:hover {
+  cursor: pointer;
+}
 @media (min-width: 768px) {
   .max-height-sm {
     max-height: 465px;
     margin-left: 10px;
+  }
+  input.finalizar {
+    padding: 1px 1px;
+  }
+  input.finalizar-quantidade {
+    margin: 0 5px;
+    padding: 1px 1px 1px 10px;
   }
 }
