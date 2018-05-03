@@ -18,7 +18,7 @@ declare var $;
 export class VendasComponent implements OnInit, AfterViewInit {
 
   clientes: string[];
-  empresas: string[];
+  // empresas: string[];
   vendedores: string[];
   servicos: string[];
   vendasForm: FormGroup;
@@ -31,7 +31,7 @@ export class VendasComponent implements OnInit, AfterViewInit {
               private carrinhoService: CarrinhoService,
               private notificationService: NotificationService) {
                 this.clienteService.clientes().subscribe(response => this.clientes = response);
-                this.empresaService.empresas().subscribe(response => this.empresas = response);
+                // this.empresaService.empresas().subscribe(response => this.empresas = response);
                 this.colaboradorService.colaboradores().subscribe(response => this.vendedores = response);
                 this.servicoService.servicos().subscribe(response => this.servicos = response);
                }
@@ -49,7 +49,7 @@ export class VendasComponent implements OnInit, AfterViewInit {
     const that = this;
     $('#id_cliente').select2({placeholder: 'Selecione o cliente'});
     $('#id_vendedor').select2({placeholder: 'Selecione o vendedor'});
-    $('#id_empresa').select2({placeholder: 'Selecione a empresa'});
+    // $('#id_empresa').select2({placeholder: 'Selecione a empresa'});
     $('#id_servico').select2({placeholder: 'Selecione os Servicos', allowClear: true});
 
     $('#id_servico').on('select2:select', function(e) {

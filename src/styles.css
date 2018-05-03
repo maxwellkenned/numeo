@@ -42,8 +42,20 @@ div#carrinho #carrinho_itens {
   max-height: 312px;
   min-height: 312px;
 }
+div#carrinho #carrinho_total {
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+}
 div#carrinho #carrinho_total h4 {
   display: inline-block;
+  font-weight: 600;
+}
+div#carrinho #carrinho_total h4:first-child {
+  padding-left: 15px;
+}
+div#carrinho #carrinho_total h4:last-child {
+  padding-right: 15px;
 }
 .main-header a::before {
   display: none;
@@ -57,6 +69,9 @@ div#carrinho #carrinho_total h4 {
 .btn-novo:hover {
   cursor: pointer;
 }
+.pointer {
+  cursor: pointer;
+}
 label.help.pull-right.ng-star-inserted {
   font-size: 10px;
 }
@@ -65,11 +80,25 @@ label.help.pull-right.ng-star-inserted {
     max-height: 465px;
     margin-left: 10px;
   }
-  input.finalizar {
-    padding: 1px 1px;
+  .finalizar-quantidade {
+    min-width: calc(100%);
+    display: inline-flex;
   }
-  input.finalizar-quantidade {
-    margin: 0 5px;
-    padding: 1px 1px 1px 10px;
+  .finalizar-quantidade input.finalizar-quantidade-input {
+    margin: 0;
+    padding: 1px;
+    width: calc(100%);
+  }
+  .icones {
+    padding: 0 2px;
+    font-size: 20px;
+  }
+  #carrinho_itens input {
+    border-width: 1px;
+    height: 20px;
+    padding: 0px 0px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 0px;
   }
 }

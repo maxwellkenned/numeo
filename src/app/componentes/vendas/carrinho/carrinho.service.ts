@@ -29,23 +29,21 @@ export class CarrinhoService {
 
 
   addQuantidade(item: Carrinho) {
-    item.quantidade = item.quantidade + 1;
+    item.quantidade = Number(item.quantidade) + 1;
   }
 
   attQuantidade(item, quantidade) {
-    if (quantidade.value > 0) {
-      item.quantidade = quantidade.value;
+    if (Number(quantidade.value) > 0) {
+      item.quantidade = Number(quantidade.value);
     } else {
       quantidade.value = item.quantidade;
     }
   }
 
   remQuantidade(item: Carrinho) {
-    const zero = item.quantidade - 1;
+    const zero = Number(item.quantidade) - 1;
     if (!(zero === 0)) {
       item.quantidade = item.quantidade - 1;
-    } else {
-      this.removeItem(item);
     }
   }
 

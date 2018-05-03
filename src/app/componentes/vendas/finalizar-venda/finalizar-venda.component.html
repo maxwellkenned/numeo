@@ -9,14 +9,14 @@
 <div class="model-body">
   <section class="content">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-sm-12 col-xs-12">
         <div class="box box-solid">
           <div class="box-body">
             <!-- Carrinho com serviços -->
-            <div class="col-sm-12" id="carrinho">
-                <div class="col-sm-12 col-xs-12">
+            <div class="" id="carrinho">
+                <div class="">
                   <div class="box box-solid">
-                    <div class="box-header">
+                    <div class="box-header col-md-offset-4">
                       <i class="fa fa-shopping-cart"></i>
                       <h3 class="box-title">Serviços</h3>
                     </div>
@@ -27,8 +27,12 @@
                           Seu carrinho está vazio!
                         </p>
                       </div>
+                      <div class="col-md-4">
+
+                      </div>
+                      <div class="col-md-8">
                       <div class="table-responsive" id="carrinho_itens" *ngIf="items().length">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-hover table-condensed">
                           <thead>
                             <tr>
                               <th>ID</th>
@@ -40,30 +44,31 @@
                             </tr>
                           </thead>
                           <tbody>
-                          <tr *ngFor="let item of items()">
-                            <td>{{item.id_servico}}</td>
-                            <td>{{item.ds_servico}}</td>
-                            <td>
-                              <div>
-                                <a type="button" class="text-danger pull-left" (click)="remQuantidade(item)"><i class="fas fa-minus-square fa-2x"></i></a>
-                                <input class="col-sm-4 text-center finalizar-quantidade" type="number" min="0" #quantidade value="{{item.quantidade}}" (blur)="attQuantidade(item, quantidade)">
-                                <a type="button" class="text-success pull-left"(click)="addQuantidade(item)"><i class="fas fa-plus-square fa-2x"></i></a>
-                              </div>
-                            </td>
-                            <td>
-                              <input class="col-sm-8 text-center finalizar" type="text" #preco id="preco" [value]="item.vl_servico | currency: 'BRL': 'true'" (change)="attPreco(item, preco)" (focus)="preco.value=''" (focusout)="attPreco(item, preco)">
-                            </td>
-                            <td>{{item.value() | currency: 'BRL': 'true'}}</td>
-                            <td class="text-right">
-                              <a (click)="removeItem(item)" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                            <tr *ngFor="let item of items()">
+                              <td>{{item.id_servico}}</td>
+                              <td>{{item.ds_servico}}</td>
+                              <td>
+                                <div class="finalizar-quantidade">
+                                  <a type="button" class="text-danger pointer" (click)="remQuantidade(item)"><i class="fas fa-minus-square icones"></i></a>
+                                  <input class="text-center finalizar-quantidade-input input-sm" type="text" min="0" #quantidade value="{{item.quantidade}}" pattern="/[0-9]/d" (blur)="attQuantidade(item, quantidade)">
+                                  <a type="button" class="text-success pointer"(click)="addQuantidade(item)"><i class="fas fa-plus-square icones"></i></a>
+                                </div>
+                              </td>
+                              <td>
+                                <input class="text-center finalizar input-sm" type="text" #preco id="preco" [value]="item.vl_servico | currency: 'BRL': 'true'" (change)="attPreco(item, preco)" (focus)="preco.value=''" (focusout)="attPreco(item, preco)">
+                              </td>
+                              <td>{{item.value() | currency: 'BRL': 'true'}}</td>
+                              <td class="text-right">
+                                <a (click)="removeItem(item)" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                     <div id="carrinho_total" *ngIf="total()>0">
-                      <h4 class="d-inline float-left">Total:</h4>
-                      <h4 class="d-inline float-right">{{total() | currency: 'BRL': 'true'}}</h4>
+                      <h4 class="">Total: </h4>
+                      <h4 class=""> {{total() | currency: 'BRL': 'true'}}</h4>
                     </div>
                   </div>
                 </div>
