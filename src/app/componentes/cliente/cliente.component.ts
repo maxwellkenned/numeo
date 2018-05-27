@@ -27,7 +27,7 @@ export class ClienteComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.clienteForm = this.formBuilder.group({
       // Pessoa
-      nome_pessoa: this.formBuilder.control('', [Validators.required]),
+      nome_cliente: this.formBuilder.control('', [Validators.required]),
       email: this.formBuilder.control('', Validators.pattern(this.emailPattern)),
       telefone: this.formBuilder.control('', ),
       celular: this.formBuilder.control('', ),
